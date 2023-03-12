@@ -91,7 +91,11 @@ const MyDrawer = (props) => {
             label={() => (<Text style={{ color: focusedRoute === 'Player' ? (mode === 'light' ? 'white' : 'black') : mode === 'light' ? 'black' : 'white', fontSize: 15 }}>Player</Text>)}
 
           />
-          <DrawerItem onPress={() => { props.navigation.navigate('Social'); setScreen(4) }} style={focusedRoute === 'Social' ? { backgroundColor: mode === 'light' ? '#181c3f' : 'white' } : {}}
+          <DrawerItem onPress={() => { if(token !== null){
+            props.navigation.navigate('Social');
+          }else{
+            Alert.alert('Warning', 'Please Create Account First')
+          } }} style={focusedRoute === 'Social' ? { backgroundColor: mode === 'light' ? '#181c3f' : 'white' } : {}}
             icon={({ color, size }) => (<FIcon name="earth-outline" size={21} color={focusedRoute === 'Social' ? (mode === 'light' ? 'white' : 'black') : mode === 'light' ? 'black' : 'white'} />)}
             label={() => (<Text style={{ color: focusedRoute === 'Social' ? (mode === 'light' ? 'white' : 'black') : mode === 'light' ? 'black' : 'white', fontSize: 15 }}>Social</Text>)}
 

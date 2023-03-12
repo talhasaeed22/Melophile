@@ -77,7 +77,7 @@ export default function Social() {
         }} />
         <Tab.Screen name="Profile" component={Profile}options={{
           title: '',
-          headerShown: true,
+          headerShown: false,
           headerTransparent: true,
         }} />
       </Tab.Navigator>

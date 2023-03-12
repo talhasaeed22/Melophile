@@ -10,6 +10,7 @@ app.use(express.json())
 app.use(cors())
 app.use('/api/auth', require('./routes/Auth'));
 
+app.use('/api/post', require('./routes/Post'));
 app.get('/', (req, res)=>{
   res.send("Welcome to Melophile API");
 })

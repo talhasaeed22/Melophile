@@ -26,7 +26,7 @@ export default function App() {
     ...DefaultTheme,
     colors:{
       ...DefaultTheme.colors,
-      background : colors.APP_BG
+      background : 'white'
     }
   }
   return (
@@ -49,7 +49,7 @@ export default function App() {
 
           <Drawer.Screen name="Social" component={Social} options={{
             title: 'Medium Share',
-            headerShown: true,
+            // headerShown: true,
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerStyle: {
