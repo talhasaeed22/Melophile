@@ -24,7 +24,7 @@ const { Schema } = mongoose;
       audio:{
           type:String,
       },
-      day:{
+      date:{
         type:String,
       },
       month:{

@@ -33,7 +33,7 @@ const Home = () => {
     let postData = []
     setPostLoading(true);
 
-    
+
     const response = await fetch(`${url}/api/post/fetchHomePosts`, {
       method: 'GET',
       headers: {
@@ -44,17 +44,17 @@ const Home = () => {
     });
     const json = await response.json();
     // console.log(json)
-    
-      if(json.allPosts !== undefined){
-        json.allPosts.map((element) => {
-          if (element.user !== json.userId) {
-            postData.push(element)
-          }
-        })
-      }
-      setList(postData)
-      setPostLoading(false);
-    
+
+    if (json.allPosts) {
+      json.allPosts.map((element) => {
+        if (element.user !== json.userId) {
+          postData.push(element)
+        }
+      })
+    }
+    setList(postData)
+    setPostLoading(false);
+
   }
 
 
@@ -80,7 +80,7 @@ const Home = () => {
     if (audio !== '') {
       audioUrl = await uploadAudio(audio)
     }
-    
+
     const date = new Date();
     const response = await fetch(`${url}/api/post/addPost`, {
       method: 'POST',
@@ -88,7 +88,7 @@ const Home = () => {
         'Content-Type': 'application/json',
         'auth-token': token
       },
-      body: JSON.stringify({ content: content, name: name, userImage: userImage, image: imageUrl, audio: audioUrl, date:date.getDate(), month:date.getMonth() + 1, year: date.getFullYear() })
+      body: JSON.stringify({ content: content, name: name, userImage: userImage, image: imageUrl, audio: audioUrl, date: date.getDate(), month: date.getMonth() + 1, year: date.getFullYear() })
     });
     const json = await response.json();
     console.log(json)
@@ -151,11 +151,11 @@ const Home = () => {
       </TouchableOpacity>
 
       <View style={{ display: 'flex', alignItems: "center" }}>
-        { postLoading ? <ActivityIndicator style={{ marginVertical: 10 }} color="#181c3f" /> : list.length === 0 ? <View style={{ display: "flex", alignItems: "center", marginTop: 150, }}>
+        {postLoading ? <ActivityIndicator style={{ marginVertical: 10 }} color="#181c3f" /> : list.length === 0 ? <View style={{ display: "flex", alignItems: "center", marginTop: 150, }}>
           <Icon name='folder-text-outline' size={35} color='black' />
           <Text style={{ textAlign: "center", fontWeight: "bold" }}>No Posts Added</Text>
-        </View>  : list.map((post, index) => {
-          return <HomePostItem key={index} />
+        </View> : list.map((post, index) => {
+          return <HomePostItem element={post} key={index} />
         })}
       </View>
 
